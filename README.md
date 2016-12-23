@@ -16,7 +16,7 @@ A resource management game framework
 - Time is given in units of time to be normalized (turn, s, ms, ns, ... whatever)
 
 ## Basics
-- Resource (storable vs non-storable - e.g. water vs electricity)
+- Resource
 - Technology (pre-requisites, research cost, research time)
 - Worker (required technology, buildings)
 
