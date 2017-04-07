@@ -66,7 +66,7 @@ All buildings have:
       "technology": null,
       "cost": {
         "wood": 10
-      }
+      },
       "time": 0,
       "maximum": 1,
       "workers": 0,
