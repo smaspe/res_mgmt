@@ -17,8 +17,8 @@ A resource management game framework
 
 ## Basics
 - Resource
-- Technology (required technologies, research cost, research time). Requires the Lab capability
-- Worker (required technology, buildings they can build). Requires the Recruitment capability
+- Technology
+- Worker
 
 ## Buildings
 
@@ -28,15 +28,15 @@ All buildings have:
 - construction cost
 - construction time
 - capabilities
-- number of building workers
+- number and type of building workers
 - maximum number of instances (-1 is infinite)
 
 ### Capabilities
 - Storage (resources)
 - Producers (resources in, resources out, production time, workers)
 - Mine (resources out, production time, builders required, capacity)
-- Lab (technologies)
-- Recruitement (workers)
+- Lab (technology, required technologies, research cost, research time)
+- Recruitement (worker, required technology)
 - Housing (capacity)
 
 ### Upgrade
