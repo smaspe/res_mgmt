@@ -27,7 +27,6 @@ def read_capabilities(capabilities, game):
 
 def read_buildings(buildings, game):
     for building in buildings:
-
         capabilities = read_capabilities(building['capabilities'], game)
         building_cost = {game.resources[k]: v for k, v in building['cost']}
 
@@ -37,13 +36,12 @@ def read_buildings(buildings, game):
         workers = {}
 
         yield Building(required_techs,
-                                  required_building,
-                                  building_cost,
-                                  building['time'],
-                                  capabilities,
-                                  workers,
-                                  building['maximum'])
-
+                       required_building,
+                       building_cost,
+                       building['time'],
+                       capabilities,
+                       workers,
+                       building['maximum'])
 
 
 def read_config(config):
