@@ -1,36 +1,37 @@
 from unittest import TestCase
 
-from model.Game import Game
+from collections import defaultdict
+
 from model.Resource import Resource
 from model.capabilities.Production import Production
 
 
 class TestProduction(TestCase):
     def test_produce_empty(self):
-        game = Game()
+        stocks = defaultdict(int)
         wood = Resource('wood')
         beam = Resource('beam')
         production = Production({wood: 2}, {beam: 1}, None, None)
-        production.apply(game)
-        self.assertEqual(0, game.stocks[beam])
-        self.assertEqual(0, game.stocks[wood])
+        production.use(stocks)
+        self.assertEqual(0, stocks[beam])
+        self.assertEqual(0, stocks[wood])
 
     def test_produce_not_enough(self):
-        game = Game()
+        stocks = defaultdict(int)
         wood = Resource('wood')
         beam = Resource('beam')
-        game.stocks[wood] = 1
+        stocks[wood] = 1
         production = Production({wood: 2}, {beam: 1}, None, None)
-        production.apply(game)
-        self.assertEqual(0, game.stocks[beam])
-        self.assertEqual(1, game.stocks[wood])
+        production.use(stocks)
+        self.assertEqual(0, stocks[beam])
+        self.assertEqual(1, stocks[wood])
 
     def test_produce(self):
-        game = Game()
+        stocks = defaultdict(int)
         wood = Resource('wood')
         beam = Resource('beam')
-        game.stocks[wood] = 3
+        stocks[wood] = 3
         production = Production({wood: 2}, {beam: 1}, None, None)
-        production.apply(game)
-        self.assertEqual(1, game.stocks[beam])
-        self.assertEqual(1, game.stocks[wood])
+        production.use(stocks)
+        self.assertEqual(1, stocks[beam])
+        self.assertEqual(1, stocks[wood])

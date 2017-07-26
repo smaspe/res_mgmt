@@ -36,11 +36,17 @@ All buildings have:
 - Producers (resources in, resources out, production time, workers)
 - Mine (resources out, production time, builders required, capacity)
 - Lab (technology, required technologies, research cost, research time)
-- Recruitement (worker, required technology)
+- Recruitment (worker, required technology)
 - Housing (capacity)
 
 ### Upgrade
 - Same content as a building 
+
+## More on Capabilities
+Each resource capability can have 3 steps:
+- Putting things in the common stock (Storage puts everything back in the common pile)
+- Using the stock (Producers take from the common stock and put the result of their production in the stock)
+- Storing back
 
 # Example
 (ITW)

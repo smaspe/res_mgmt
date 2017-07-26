@@ -1,4 +1,4 @@
-from model.Game import NotEnoughStockException
+from model.Game import NotEnoughStockException, Game
 
 
 class Production:
@@ -6,10 +6,16 @@ class Production:
         self.gain = gain
         self.cost = cost
 
-    def apply(self, game):
+    def load(self):
+        pass
+
+    def use(self, global_stock):
         try:
-            game.withdraw(self.cost)
-            game.deposit(self.gain)
+            Game.withdraw(global_stock, self.cost)
+            Game.deposit(global_stock, self.gain)
         except NotEnoughStockException:
             # Excepted exception, as if there is not enough stock, just do nothing
             pass
+
+    def unload(self, global_stock):
+        pass
