@@ -1,3 +1,6 @@
+from copy import deepcopy
+
+
 class Blueprint:
     def __init__(self, name, req_tech, req_blueprint, build_cost, build_time, capabilities, workers, max_instances=-1):
         self.name = name
@@ -9,8 +12,9 @@ class Blueprint:
 
 
 class Building:
-    def __init__(self, capabilities):
-        self.capabilities = capabilities
+    def __init__(self, blueprint):
+        self.name = blueprint.name
+        self.capabilities = deepcopy(blueprint.capabilities)
 
     def apply_capabilities(self, game):
         for capability in self.capabilities:

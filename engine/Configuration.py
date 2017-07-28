@@ -1,9 +1,10 @@
 from model.Building import Blueprint
 from model.Game import Game
 from model.Resource import Resource
+from model.capabilities.Production import Production
 from model.capabilities.Storage import Storage
 
-CAPABILITIES = {'storage': Storage}
+CAPABILITIES = {'storage': Storage, 'production': Production}
 
 
 def read_resources(resources):
@@ -22,13 +23,12 @@ def read_capabilities(capabilities, game):
     :param game: the context
     :return: a list of capabilities for that blueprint
     """
-    return [CAPABILITIES[capa](game, conf) for capa, conf in capabilities.items()]
+    return [CAPABILITIES[capa](game, **conf) for capa, conf in capabilities.items()]
 
 
 def read_blueprints(blueprints, game):
     for blueprint in blueprints:
         capabilities = read_capabilities(blueprint['capabilities'], game)
-        building_cost = {game.resources[k]: v for k, v in blueprint['cost']}
 
         # TODO
         required_blueprints = []
@@ -38,7 +38,7 @@ def read_blueprints(blueprints, game):
         yield Blueprint(blueprint['name'],
                         required_techs,
                         required_blueprints,
-                        building_cost,
+                        blueprint['cost'],
                         blueprint['time'],
                         capabilities,
                         workers,

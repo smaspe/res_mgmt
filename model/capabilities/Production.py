@@ -2,11 +2,11 @@ from model.Game import NotEnoughStockException, Game
 
 
 class Production:
-    def __init__(self, cost, gain, prod_time, workers):
-        self.gain = gain
+    def __init__(self, game, cost, gain, prod_time, workers):
         self.cost = cost
+        self.gain = gain
 
-    def load(self):
+    def load(self, global_stock):
         pass
 
     def use(self, global_stock):

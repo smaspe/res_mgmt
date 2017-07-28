@@ -17,7 +17,7 @@ class Game:
         stocks = self.load()
 
         Game.withdraw(stocks, blueprint.build_cost)
-        building = Building(blueprint.capabilities)
+        building = Building(blueprint)
         self.buildings[blueprint].append(building)
 
         self.unload(stocks)
@@ -44,6 +44,13 @@ class Game:
     def unload(self, stocks):
         for capability in self.iter_capabilities():
             capability.unload(stocks)
+
+    # TODO refactor, not ideal to load everything every time
+    def get_stock(self, resource):
+        stocks = self.load()
+        res = stocks[resource]
+        self.unload(stocks)
+        return res
 
     @staticmethod
     def withdraw(stocks, costs):
