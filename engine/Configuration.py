@@ -35,7 +35,8 @@ def read_blueprints(blueprints, game):
         required_techs = []
         workers = {}
 
-        yield Blueprint(required_techs,
+        yield Blueprint(blueprint['name'],
+                        required_techs,
                         required_blueprints,
                         building_cost,
                         blueprint['time'],

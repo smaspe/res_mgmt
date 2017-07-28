@@ -14,7 +14,7 @@ class Production:
             Game.withdraw(global_stock, self.cost)
             Game.deposit(global_stock, self.gain)
         except NotEnoughStockException:
-            # Excepted exception, as if there is not enough stock, just do nothing
+            # Expected exception, as if there is not enough stock, just do nothing
             pass
 
     def unload(self, global_stock):
