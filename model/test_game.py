@@ -1,6 +1,5 @@
-from unittest import TestCase
-
 from collections import defaultdict
+from unittest import TestCase
 
 from model.Game import Game, NotEnoughStockException
 from model.Resource import Resource

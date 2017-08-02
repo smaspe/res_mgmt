@@ -23,7 +23,7 @@ def read_capabilities(capabilities, game):
     :param game: the context
     :return: a list of capabilities for that blueprint
     """
-    return [CAPABILITIES[capa](game, **conf) for capa, conf in capabilities.items()]
+    return {capa: [CAPABILITIES[capa](game, **conf) for conf in confs] for capa, confs in capabilities.items()}
 
 
 def read_blueprints(blueprints, game):

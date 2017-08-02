@@ -17,9 +17,9 @@ class TestReadConfig(TestCase):
     def test_read_capabilities(self):
         game = Game()
         game.resources = {'wood': Resource('wood')}
-        config = {'storage': {'wood': 10}}
+        config = {'storage': [{'wood': 10}]}
         res = Configuration.read_capabilities(config, game)
-        self.assertTrue(res[0].__class__, Storage)
+        self.assertTrue(res['storage'][0].__class__, Storage)
 
     def test_read_blueprints(self):
         game = Game()

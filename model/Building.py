@@ -16,6 +16,14 @@ class Building:
         self.name = blueprint.name
         self.capabilities = deepcopy(blueprint.capabilities)
 
-    def apply_capabilities(self, game):
-        for capability in self.capabilities:
-            capability.apply(game)
+    def load(self, global_stock):
+        for capability in self.capabilities['storage']:
+            capability.load(global_stock)
+
+    def unload(self, global_stock):
+        for capability in self.capabilities['storage']:
+            capability.unload(global_stock)
+
+    def use(self, global_stock):
+        for capability in self.capabilities['production']:
+            capability.use(global_stock)

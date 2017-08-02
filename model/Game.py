@@ -1,3 +1,4 @@
+import itertools
 from collections import defaultdict
 
 from model.Building import Building
@@ -22,28 +23,25 @@ class Game:
 
         self.unload(stocks)
 
+    def all_buildings(self):
+        return itertools.chain(*self.buildings.values())
+
     def load(self):
         stocks = defaultdict(int)
-        for capability in self.iter_capabilities():
-            capability.load(stocks)
+        for building in self.all_buildings():
+            building.load(stocks)
         return stocks
-
-    def iter_capabilities(self):
-        for building_list in self.buildings.values():
-            for building in building_list:
-                for capability in building.capabilities:
-                    yield capability
 
     def tick(self):
         stocks = self.load()
-        for capability in self.iter_capabilities():
-            capability.use(stocks)
+        for building in self.all_buildings():
+            building.use(stocks)
         self.unload(stocks)
         # Whatever is left in stocks is wasted
 
     def unload(self, stocks):
-        for capability in self.iter_capabilities():
-            capability.unload(stocks)
+        for building in self.all_buildings():
+            building.unload(stocks)
 
     # TODO refactor, not ideal to load everything every time
     def get_stock(self, resource):

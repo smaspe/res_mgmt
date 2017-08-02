@@ -1,6 +1,5 @@
-from unittest import TestCase
-
 from collections import defaultdict
+from unittest import TestCase
 
 from model.Resource import Resource
 from model.capabilities.Production import Production
@@ -11,7 +10,7 @@ class TestProduction(TestCase):
         stocks = defaultdict(int)
         wood = Resource('wood')
         beam = Resource('beam')
-        production = Production({wood: 2}, {beam: 1}, None, None)
+        production = Production(None, {wood: 2}, {beam: 1}, None, None)
         production.use(stocks)
         self.assertEqual(0, stocks[beam])
         self.assertEqual(0, stocks[wood])
@@ -21,7 +20,7 @@ class TestProduction(TestCase):
         wood = Resource('wood')
         beam = Resource('beam')
         stocks[wood] = 1
-        production = Production({wood: 2}, {beam: 1}, None, None)
+        production = Production(None, {wood: 2}, {beam: 1}, None, None)
         production.use(stocks)
         self.assertEqual(0, stocks[beam])
         self.assertEqual(1, stocks[wood])
@@ -31,7 +30,7 @@ class TestProduction(TestCase):
         wood = Resource('wood')
         beam = Resource('beam')
         stocks[wood] = 3
-        production = Production({wood: 2}, {beam: 1}, None, None)
+        production = Production(None, {wood: 2}, {beam: 1}, None, None)
         production.use(stocks)
         self.assertEqual(1, stocks[beam])
         self.assertEqual(1, stocks[wood])

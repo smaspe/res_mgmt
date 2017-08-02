@@ -6,9 +6,6 @@ class Production:
         self.cost = cost
         self.gain = gain
 
-    def load(self, global_stock):
-        pass
-
     def use(self, global_stock):
         try:
             Game.withdraw(global_stock, self.cost)
@@ -16,6 +13,3 @@ class Production:
         except NotEnoughStockException:
             # Expected exception, as if there is not enough stock, just do nothing
             pass
-
-    def unload(self, global_stock):
-        pass
