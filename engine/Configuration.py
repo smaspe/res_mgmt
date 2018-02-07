@@ -1,3 +1,5 @@
+from typing import Mapping, Iterable, List, Any
+
 from model.Building import Blueprint
 from model.Game import Game
 from model.Resource import Resource
@@ -7,7 +9,7 @@ from model.capabilities.Storage import Storage
 CAPABILITIES = {'storage': Storage, 'production': Production}
 
 
-def read_resources(resources):
+def read_resources(resources: Iterable[str]) -> Mapping[str, Resource]:
     """
     Reads the resources from the relevant section of the config
     :param resources: the config section
@@ -16,19 +18,18 @@ def read_resources(resources):
     return {k: Resource(k) for k in resources}
 
 
-def read_capabilities(capabilities, game):
+def read_capabilities(capabilities) -> Mapping[str, List[Any]]:
     """
     Reads the capabilities from the relevant section of the config of a building's blueprint
     :param capabilities: the config section
-    :param game: the context
-    :return: a list of capabilities for that blueprint
+    :return: a mapping of capabilities for that blueprint
     """
-    return {capa: [CAPABILITIES[capa](game, **conf) for conf in confs] for capa, confs in capabilities.items()}
+    return {capa: [CAPABILITIES[capa](**conf) for conf in confs] for capa, confs in capabilities.items()}
 
 
-def read_blueprints(blueprints, game):
+def read_blueprints(blueprints) -> Iterable[Blueprint]:
     for blueprint in blueprints:
-        capabilities = read_capabilities(blueprint['capabilities'], game)
+        capabilities = read_capabilities(blueprint['capabilities'])
 
         # TODO
         required_blueprints = []
@@ -55,6 +56,6 @@ def read_config(config):
 
     game.resources = read_resources(config['resources'])
 
-    game.blueprints = list(read_blueprints(config['blueprints'], game))
+    game.blueprints = list(read_blueprints(config['blueprints']))
 
     return game

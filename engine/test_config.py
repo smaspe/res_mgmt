@@ -12,17 +12,17 @@ class TestReadConfig(TestCase):
         res = Configuration.read_resources(config)
         self.assertTrue('wood' in res)
         self.assertTrue('rock' in res)
-        self.assertEqual(res['rock'].res_id, 'rock')
+        self.assertEqual(res['rock'], 'rock')
 
     def test_read_capabilities(self):
         game = Game()
         game.resources = {'wood': Resource('wood')}
         config = {'storage': [{'wood': 10}]}
-        res = Configuration.read_capabilities(config, game)
+        res = Configuration.read_capabilities(config)
         self.assertTrue(res['storage'][0].__class__, Storage)
 
     def test_read_blueprints(self):
         game = Game()
         config = [{'name': 'Test Blueprint', 'capabilities': {}, 'cost': {}, 'time': 10, 'maximum': 1}]
-        res = list(Configuration.read_blueprints(config, game))
+        res = list(Configuration.read_blueprints(config))
         self.assertEqual(1, len(res))

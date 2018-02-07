@@ -2,7 +2,7 @@ from collections import defaultdict
 
 
 class Storage:
-    def __init__(self, game, **resources):
+    def __init__(self, **resources):
         self.capacity = resources
         self.stock = {}
 
